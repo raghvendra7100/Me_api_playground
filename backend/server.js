@@ -5,7 +5,8 @@ const dotenv = require("dotenv");
 dotenv.config();  
 
 const app = express();
-
+const cors = require("cors");
+app.use(cors());
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI; 
 const Profile = require("./model/db");
