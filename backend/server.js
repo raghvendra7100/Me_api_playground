@@ -9,6 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI; 
 const Profile = require("./model/db");
+const profileRoutes = require("./routes/profile");
+const skillsRoutes = require("./routes/skills");
+const projectsRoutes = require("./routes/projects");
+const searchRoutes = require("./routes/search");
 
 
 // Connect to MongoDB
@@ -36,11 +40,16 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+app.use("/profile", profileRoutes);
+app.use("/skills", skillsRoutes);
+app.use("/projects", projectsRoutes);
+app.use("/search", searchRoutes);
 
 // Root route
 app.get("/", (req, res) => {
   res.send("backend working");
 });
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
