@@ -8,6 +8,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI; 
+const Profile = require("./models/Profile");
+
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, {
@@ -21,6 +23,19 @@ mongoose.connect(MONGO_URI, {
 app.get("/health", (req, res) => {
   res.status(200).json({ ok: true });
 });
+
+ 
+
+ //profile endpoint
+app.get("/profile", async (req, res) => {
+  try {
+    const profile = await Profile.findOne(); 
+    res.json(profile);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch profile" });
+  }
+});
+
 
 // Root route
 app.get("/", (req, res) => {
