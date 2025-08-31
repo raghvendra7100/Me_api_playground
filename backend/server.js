@@ -8,7 +8,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI; 
-const Profile = require("./models/Profile");
+const Profile = require("./model/db");
 
 
 // Connect to MongoDB
